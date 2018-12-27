@@ -1,4 +1,7 @@
-<div class="container">
+<h3 *ngIf="languages.length === 0">
+  Loading ...
+</h3>
+<div class="container" *ngIf="languages.length > 0">
   <h3>Best Form</h3>
 <form #form="ngForm" (submit)="submitForm(form)" novalidate>
 
@@ -63,5 +66,3 @@
     [disabled]="form.invalid">OK</button>
 </form>
 </div>
-
-{{ form.invalid }}

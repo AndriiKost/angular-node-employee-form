@@ -4,11 +4,33 @@ var util = require('util');
 
 var server = http.createServer(function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Header', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
-    if (req.method.toLowerCase() === 'post') {
-        proccessForm(req, res);
+    if (req.method.toLowerCase() == 'get') {
+
+        var data = {
+            data: {
+                languages: [
+                    'English',
+                    'Polish',
+                    'Spanish',
+                    'German',
+                    'Russian',
+                    'Other'
+                ]
+            }
+        };
+
+        var responseData = JSON.stringify(data);
+        console.log('get: '. responseData);
+        res.end(responseData);
         return;
+    }
+
+    if (req.method.toLowerCase() == 'post') {
+      console.log('post if trigger');
+      proccessForm(req, res);
+      return;
     }
 
     res.end();
@@ -22,6 +44,8 @@ function proccessForm(req, res) {
             'content-type': 'text/plain'
         });
 
+        fields.id = 'TESTID11';
+
         var data = JSON.stringify({
             fields: fields
         })
@@ -34,4 +58,4 @@ function proccessForm(req, res) {
 
 var port = 3100;
 server.listen(port);
-onmouseleave.log('server listening on port ' + port);
+console.log('server listening on port ' + port);

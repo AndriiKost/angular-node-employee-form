@@ -11,12 +11,12 @@ export class FormPoster {
 
   }
 
-  extractData(res: Response) {
+  private extractData(res: Response) {
     let body = res.json();
     return body.fields || { };
   }
 
-  extractLanguages(res: Response) {
+  private extractLanguages(res: Response) {
     let body = res.json();
     return body.data || { };
   }

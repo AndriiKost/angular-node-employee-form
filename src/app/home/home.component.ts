@@ -10,11 +10,15 @@ import { NgForm } from '@angular/forms';
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  languages = ['English', 'Spanish', 'German'];
+  languages = [];
   model = new Employee('Daria', 'Johnson', true, '1099', 'default');
 
   constructor(private formPoster: FormPoster) {
-
+    this.formPoster.getLanguages()
+                    .subscribe(
+                      data => this.languages = data.languages ,
+                      err => console.log('get error: ',err)
+                    );
   }
 
   submitForm(form: NgForm) {
